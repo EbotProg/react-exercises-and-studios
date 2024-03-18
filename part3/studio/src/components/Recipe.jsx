@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import data from "./data";
 
-const RecipeAuthor = () => {
-   let authorLink = "";
-   let authorPhoto = "";
-   let authorName = "";
+const RecipeAuthor = ({authorLink, authorPhoto, authorName}) => {
+   // let authorLink = "";
+   // let authorPhoto = "";
+   // let authorName = "";
 
    return (
       <div>
@@ -16,8 +17,8 @@ const RecipeAuthor = () => {
    );
 }
 
-const RecipeIngredients = () => {
-   const ingredients = [];
+const RecipeIngredients = ({ingredients}) => {
+   // const ingredients = [];
    return(
       <div>
          <h3>Recipe Ingredients</h3>
@@ -32,33 +33,33 @@ const RecipeIngredients = () => {
    );
 }
 
-const RecipeDescription = () => {
+const RecipeDescription = ({data}) => {
    return (
       <div> 
          <div>
-            <h1></h1>
-            <p></p>
+            <h1>{data.title}</h1>
+            <p>{data.description}</p>
          </div>
          <div className="recipePhotoBlock">
-            <RecipeIngredients />
-            <RecipeAuthor />
+            <RecipeIngredients ingredients={data.ingredients} />
+            <RecipeAuthor authorPhoto={data.authorPhoto} authorLink={data.websiteLink} authorName={data.authorName} />
          </div>
       </div>
    );
 }
 
-const RecipePhoto = () => {
+const RecipePhoto = ({photo}) => {
    return (
-      <img src="" alt="" className="imageUpdates"/>
+      <img src={photo} alt="" className="imageUpdates"/>
    );
 }
 
 export default function RecipeDisplay () {
    return(
       <div className="recipePhotoBlock">
-         <RecipePhoto />
+         <RecipePhoto photo={data.recipePhoto} />
          <div>
-            <RecipeDescription />
+            <RecipeDescription data={data}/>
          </div>
       </div>
    );
